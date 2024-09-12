@@ -1,0 +1,22 @@
+.admin-container-product {
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+
+    .form-container-product {
+        flex: 0 0 360px;
+    }
+
+    .table-container-product {
+        flex: 1;
+    }
+
+    @media screen and (width < 808px) {
+        flex-direction: column;
+        .form-container-product {
+            order: 1;
+        }
+    }
+
+
+}

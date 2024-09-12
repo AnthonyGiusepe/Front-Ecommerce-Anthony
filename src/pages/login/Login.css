@@ -1,0 +1,66 @@
+
+.Login-container {
+    flex-grow: 1;
+    max-width: 561px;
+    margin: 0 auto;
+    color: black;
+    place-content: center;
+
+    .Login-register{
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 3.8rem;
+            margin-bottom: 1rem;
+            color: inherit;
+    
+        }
+    
+        .section-subtitle {
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            display: block;
+            text-transform: uppercase;
+            color: grey;
+            font-weight: 300;
+        }
+
+        .login-form{
+            font-family: monospace, sans-serif;
+            margin-bottom: 2rem;
+
+            .input-container{
+                margin-bottom: 1rem;
+                display: flex;
+                flex-direction: column;
+
+                .llenar{
+                    color: red;
+                }
+            }
+
+            .form-cuenta{
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: #3b3737;
+
+                a{
+                    color: #746c6c;
+
+                    &:hover{
+                        color: black;
+                    }
+                }
+            }
+
+        }
+    
+    }
+}
