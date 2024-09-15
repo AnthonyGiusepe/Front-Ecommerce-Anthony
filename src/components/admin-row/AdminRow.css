@@ -1,48 +1,107 @@
-
 .admin-table-row {
+
     .image {
+
+        background-color: white;
+
         img {
-            width: 50px;
-            height: 50px;
+            width: 90px;
+            height: 90px;
             object-fit: cover;
-            border-radius: 50%;
+            padding: 0.3rem;
         }
     }
 
     .name {
+
+        text-transform: capitalize;
+        font-size: 1rem;
+        text-align: center;
         font-weight: 600;
+        padding: 0.75rem;
+
     }
 
     .description {
+
+        text-transform: lowercase;
+
         .description-container {
+
+            font-style: italic;
+            color: #212121;
+            text-align: left;
+            padding: 1rem;
+            text-transform: initial;
+
+
             display: -webkit-box;
             -webkit-line-clamp: 3;
             overflow: hidden;
             -webkit-box-orient: vertical;
+
         }
+
+        /* No funciona el first-letter debido al webkitbox */
+        /* &::first-letter {
+            text-transform: uppercase !important;
+        } */
+
     }
 
     .price {
+        font-size: .95rem;
+        color: rgb(8, 12, 240);
+        text-align: center;
+        width: 100px;
         font-weight: 600;
+
     }
 
-    .date{
-        font-size: 0.8rem;
-        color: #AAA;
+    .category{
+        text-align: center;
+        width: 100px;
+    }
+
+    .date {
+        font-size: .9rem;
+        font-weight: bolder;
+        color: black;
+        text-align: center;
+        width: 100px;
     }
 
     .actions {
 
         .actions-container {
+            
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem;
+
+            &:hover{
+                cursor: pointer;
+            }
         }
 
-        .actions-container button{
-            font-size: 1.5rem;
+        button {
+            font-size: 1.7rem;
+            cursor: pointer;
+            background-color: white;
+            padding: 0.2rem;
+            border: none;
+
         }
+
+        button:nth-child(even){
+            color: red;
+        }
+
+        button:nth-child(odd){
+            color: green;
+        }
+
     }
 
 }

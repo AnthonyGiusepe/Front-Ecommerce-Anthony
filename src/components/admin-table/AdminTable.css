@@ -1,22 +1,31 @@
+
+
 .admin-table {
     flex: 1;
     padding: 1rem;
     border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
     width: 100%;
 
-    th,
-    td {
+    th, td {
         padding: .5rem;
-        border: 1px solid #333;
+        border: 2px solid #333;
+        
     }
 
     th {
-        background-color: #333;
+        padding: .75rem .5rem;
+        background-color: #222;
         color: white;
+
     }
 
     tr:nth-child(even) {
-        background-color: #222;
+        background-color: #c2c2c2;
+
+        button{
+            background-color: #c2c2c2
+        }
     }
 
 }

@@ -5,7 +5,7 @@ import './AdminProduct.css'
 import AdminTable from "../../components/admin-table/AdminTable";
 import Swal from "sweetalert2";
 
-const URL = 'https://66cd01338ca9aa6c8cc93b35.mockapi.io/api/v1'
+const URL = import.meta.env.VITE_SERVER_URL
 
 export default function AdminProduct() {
 
@@ -142,16 +142,21 @@ export default function AdminProduct() {
 
       <div className="admin-container-product">
         <div className="form-container-product">
-          <h1>AdminProduct</h1>
+          <h1 className="titleproduct">
+            {
+              selectedProduct ? 'Editar productos' : 'Crear Producto'
+            }
+          </h1>
           <form onSubmit={handleSubmit(onProductSubmit)}>
 
             <div className="adminForm">
               <div className="input-group">
-                <label htmlFor="name">Nombre Producto</label>
+
+                <label htmlFor="name">Nombre Producto <span className="llenar">*</span></label>
                 <input type="text"
                   id="name"
                   {...register("name", { required: true, minLength: 3 })
-                  } />
+                  } style={{ textTransform: 'uppercase' }} />
 
                 {errors.name?.type === 'required' && <div className="input-error">El campo es requerido</div>}
                 {errors.name?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 3</div>}
@@ -160,36 +165,56 @@ export default function AdminProduct() {
 
               <div className="input-group">
 
-                <label htmlFor="">Precio</label>
-                <input type="number" {...register("price", { required: true })} />
+                <label htmlFor="">Precio <span className="llenar">*</span></label>
+                <input type="number" {...register("price", { required: true, minLength: 1 })} />
 
-                {errors.price && <div className="input-error">El campo es requerido</div>}
+                {errors.price?.type === 'required' && <div className="input-error">El campo es requerido</div>}
+                {errors.price?.type === 'minLength' && <div className="input-error">Ingresa un precio</div>}
 
               </div>
 
               <div className="input-group">
-                <label htmlFor="description">Descripcion</label>
-                <textarea {...register("description")} rows={5} />
+
+                <label htmlFor="description">Descripción <span className="llenar">*</span></label>
+                <textarea {...register("description", { required: true, minLength: 2, maxLength: 300 })} rows={5} />
+
+                {errors.description?.type === 'required' && <div className="input-error">El campo es requerido</div>}
+                {errors.description?.type === 'minLength' && <div className="input-error">Ingresa un precio</div>}
+                {errors.description?.type === 'maxLength' && <div className="input-error">Excediste el número de Caracteres</div>}
+
               </div>
 
               <div className="input-group">
-                <label htmlFor="">Categoria</label>
-                <select  {...register("category")}>/
-                  <option value="Consolas">Consolas Video Juegos</option>
-                  <option value="games">Juegos</option>
-                  <option value="devices">Accesorios</option>
+
+                <label htmlFor="">Categoria <span className="llenar">*</span></label>
+                <select  {...register("category", { required: true })}>/
+                  <option value="Whisky">Whisky</option>
+                  <option value="Ron">Ron</option>
+                  <option value="Pisco">Pisco</option>
+                  <option value="Gin">Gin</option>
+                  <option value="Vodka">Vodka</option>
+                  <option value="Tequila">Tequila</option>
                 </select>
-              </div>
 
-              <div className="input-group">
-                <label htmlFor="createdAt">Fecha de ingreso</label>
-                <input type="date" {...register("createdAt")} />
+                {errors.category && <div className="input-error">El campo es requerido</div>}
 
               </div>
 
               <div className="input-group">
-                <label htmlFor="">Agregar Imagen</label>
-                <input type="url" {...register("image")} />
+
+                <label htmlFor="createdAt">Fecha de ingreso <span className="llenar">*</span></label>
+                <input type="date" {...register("createdAt", { required: true })} />
+
+                {errors.category && <div className="input-error">El campo es requerido</div>}
+
+              </div>
+
+              <div className="input-group">
+
+                <label htmlFor="">Agregar Imagen <span className="llenar">*</span></label>
+                <input type="url" {...register("image", { required: true })} />
+
+                {errors.category && <div className="input-error">El campo es requerido</div>}
 
               </div>
 
@@ -206,10 +231,13 @@ export default function AdminProduct() {
                 </button>
 
               </div>
+
             </div>
 
           </form>
+
         </div>
+
         <div className="table-container-product">
           <AdminTable products={products}
             deleteProduct={deleteProduct}

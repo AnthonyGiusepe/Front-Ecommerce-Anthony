@@ -36,7 +36,6 @@
         .division-contac{
             display: flex;
             justify-content: space-evenly;
-            margin-bottom: 1.85rem;
 
             >div {
                 flex: 1;
