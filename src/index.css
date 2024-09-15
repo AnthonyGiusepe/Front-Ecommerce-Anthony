@@ -251,22 +251,20 @@ body {
     }
 
     .product-card-container {
+        
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
 
-
-
         .product-card {
+
             padding: 16px;
             border-radius: 8px;
             width: 280px;
             overflow: hidden;
             border: 1px solid transparent;
             transition: border 0.3s, box-shadow 0.3s;
-            transition: all 0.3s;
-
 
             &:hover {
 
@@ -277,17 +275,41 @@ body {
                     visibility: visible !important;
                     opacity: 1 !important;
                 }
+
+                img{
+                    transition: all 0.3s;
+                    transform: scale(1.15) rotate(2deg);
+                    filter: grayscale(0);
+                }
             }
 
             .card-header {
 
                 .product-image {
+
                     position: relative;
 
                     img {
                         width: 100%;
                         height: 300px;
                         object-fit: cover;
+                        
+                    }
+
+                    .product-category {
+                        position: absolute;
+                        top: 5px;
+                        left: 18%;
+                        translate: -50%;
+                        font-weight: bold;
+                        width: min-content;
+                        color: white;
+                        padding: .4rem .5rem;
+                        line-height: 1;
+                        font-size: .75rem;
+                        border-radius: .5rem;
+                        background-color: royalblue;
+                        text-transform: uppercase;
                     }
 
                     .btn-quickview {

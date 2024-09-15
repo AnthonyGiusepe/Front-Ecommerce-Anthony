@@ -1,5 +1,3 @@
-import ProductGallery from "../../components/product-gallery/ProductGallery";
-
 
 export default function HomeProduct() {
 
@@ -11,7 +9,7 @@ export default function HomeProduct() {
         CAROUSEL
       </section>
       
-      <ProductGallery />
+
 
     </>
   )
