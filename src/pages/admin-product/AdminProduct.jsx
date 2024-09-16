@@ -144,7 +144,7 @@ export default function AdminProduct() {
         <div className="form-container-product">
           <h1 className="titleproduct">
             {
-              selectedProduct ? 'Editar productos' : 'Crear Producto'
+              selectedProduct ? 'Editar producto' : 'Crear Producto'
             }
           </h1>
           <form onSubmit={handleSubmit(onProductSubmit)}>

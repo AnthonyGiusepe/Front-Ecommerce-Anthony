@@ -276,14 +276,20 @@ body {
                     opacity: 1 !important;
                 }
 
-                img{
-                    transition: all 0.3s;
-                    transform: scale(1.15) rotate(2deg);
-                    filter: grayscale(0);
+                .card-header{
+                    .product-image{
+                        img{
+                            transform: scale(1.15) rotate(2deg);
+                            filter: grayscale(0);
+                        }
+                    }
                 }
+
+
             }
 
             .card-header {
+                overflow: hidden;
 
                 .product-image {
 
@@ -293,6 +299,8 @@ body {
                         width: 100%;
                         height: 300px;
                         object-fit: cover;
+                        transition: transform 0.3s;
+                        filter: grayscale(35%);
                         
                     }
 

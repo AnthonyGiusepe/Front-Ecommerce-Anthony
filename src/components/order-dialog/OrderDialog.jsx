@@ -1,10 +1,12 @@
 import { useOrder } from '../../context/OrderContext'
 import './OrderDialog.css'
 
-export default function OrderDialog({showModal, setToggleModal}) {
+export default function OrderDialog({ showModal, setToggleModal }) {
 
-  if(!showModal) return
-  const {order} = useOrder()
+  const { order } = useOrder()
+  
+  if (!showModal) return
+
 
   return (
     <div className='modal-overlay'>
@@ -15,7 +17,7 @@ export default function OrderDialog({showModal, setToggleModal}) {
 
           <ul className="order-list">
             {
-              order.map((item, index) =><li className="order-item" key={index}>
+              order.map((item, index) => <li className="order-item" key={index}>
                 {item}
               </li>)
             }
@@ -24,7 +26,7 @@ export default function OrderDialog({showModal, setToggleModal}) {
 
         </div>
         <div className="modal-footer">
-          <button onClick={()=> setToggleModal(!showModal)}>Cerrar</button>
+          <button onClick={() => setToggleModal(!showModal)}>Cerrar</button>
           <button className='btn'>
             Finalizar compra
           </button>

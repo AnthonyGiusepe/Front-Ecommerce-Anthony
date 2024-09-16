@@ -8,7 +8,6 @@ import './form.css'
 import Register from "./pages/register/Register";
 import Nosotros from "./pages/nosotros/Nosotros";
 import AdminProduct from "./pages/admin-product/AdminProduct";
-import HomeProduct from "./pages/home-product/HomeProduct";
 import ProductDetail from "./pages/product-detail/ProductDetail";
 import OrderDialog from "./components/order-dialog/OrderDialog";
 import { useState } from "react";
@@ -16,13 +15,13 @@ import { useState } from "react";
 
 export default function App() {
 
-  // const [toggleModal, setToggleModal] = useState(false)
+  const [toggleModal, setToggleModal] = useState(false)
 
   return (
     <>
-      {/* <button onClick={()=> setToggleModal(!toggleModal)}>Ver Carrito</button>
+      <button onClick={()=> setToggleModal(!toggleModal)}>Ver Carrito</button>
 
-      <OrderDialog showModal={toggleModal} setToggleModal={setToggleModal} /> */}
+      <OrderDialog showModal={toggleModal} setToggleModal={setToggleModal} />
 
       <Header />
 
@@ -41,8 +40,6 @@ export default function App() {
           <Route path="/nosotros" element={<Nosotros />} />
 
           <Route path="/admin-product" element={<AdminProduct />} />
-
-          <Route path="/home-product" element={<HomeProduct />} />
 
           <Route path="/product-detail/:id" element={<ProductDetail />} />
 
