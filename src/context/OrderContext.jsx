@@ -26,23 +26,23 @@ export function OrderProvider({ children }) {
 
         console.log('Add product', product.name)
 
+        // const updateOrder = order.map(prod => {
+
+        //     if (prod.id === product.id) {
+        //         prod.quantity++
+        //     }
+
+        //     return prod
+
+        // })
+
+        // setOrder(updateOrder)
+
         const productExists = order.find(prod => prod.id === product.id)
 
         if (productExists) {
 
             productExists.quantity++
-
-            // const updateOrder = order.map(prod => {
-
-            //     if (prod.id === product.id) {
-            //         prod.quantity++
-            //     }
-
-            //     return prod
-
-            // })
-
-            // setOrder(updateOrder)
 
             setOrder([...order])
 
@@ -75,7 +75,7 @@ export function OrderProvider({ children }) {
         setCount(cantidadItems)
     }
 
-    function calculateTotal(){
+    function calculateTotal() {
 
         let total = 0
 
@@ -86,6 +86,43 @@ export function OrderProvider({ children }) {
         setTotal(total)
     }
 
+    function removeProduct(id) {
+
+        // const indice = order.findIndex(prod => prod.id === id)
+
+        // const orderCopy = [...order]
+
+        // orderCopy.splice(indice, 1)
+
+        // setOrder(orderCopy)
+
+        const orderFiltered = order.filter(prod => prod.id !== id)
+
+        setOrder(orderFiltered)
+    }
+
+    function changeItemQuantity(id, value) {
+
+        // const newOrder = order.map(prod =>{
+
+
+        //     if(prod.id === id){
+        //         prod.quantity = value
+        //     }
+
+        //     return prod
+        // })
+
+        // setOrder(newOrder)
+
+        const producto = order.find(prod => prod.id === id)
+
+        producto.quantity = value
+
+        setOrder([...order])
+
+    }
+
     return (
         <OrderContext.Provider
             value={{
@@ -94,7 +131,9 @@ export function OrderProvider({ children }) {
                 toggleModal,
                 setToggleModal,
                 count,
-                total
+                total,
+                removeProduct,
+                changeItemQuantity
             }}
         >
             {children}

@@ -20,8 +20,34 @@
         font-weight: 500;
     }
 
+    .item-count{
+
+        .item-input{
+            width: 7ch;
+        }
+
+    }
+
+
+
     .item-actions{
         color: #333;
+
+        .btn-trash{
+            padding: .125rem;
+            width: 25px;
+            height: 25px;
+            background-color: royalblue;
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: .125rem;
+
+            &.btn-danger{
+                background-color: crimson;
+            }
+
+        }
     }
 
 }
