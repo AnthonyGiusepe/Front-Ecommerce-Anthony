@@ -1,30 +1,41 @@
 import { useOrder } from '../../context/OrderContext'
+import OrderItem from '../order-item/OrderItem'
 import './OrderDialog.css'
 
-export default function OrderDialog({showModal, setToggleModal}) {
+export default function OrderDialog() {
 
-  if(!showModal) return
-  const {order} = useOrder()
+  const { order, toggleModal, setToggleModal, total } = useOrder()
+  
+  if (!toggleModal) return
+
 
   return (
-    <div className='modal-overlay'>
-      <div className="modal-content">
+    <div className='modal-overlay'onClick={()=> setToggleModal(!toggleModal)}>
+
+      <div className="modal-content" onClick={ (e)=> e.stopPropagation() }>
 
         <div className="modal-header">titulo de modal</div>
+        
         <div className="modal-body">
 
           <ul className="order-list">
+
             {
-              order.map((item, index) =><li className="order-item" key={index}>
-                {item}
-              </li>)
+              order.map((item) => (
+                <OrderItem key={item.id} item={item}/>
+              ))
             }
+
+            <li className='list-total'>
+              S/. {total}
+            </li>
 
           </ul>
 
         </div>
+
         <div className="modal-footer">
-          <button onClick={()=> setToggleModal(!showModal)}>Cerrar</button>
+          <button onClick={() => setToggleModal(!toggleModal)}>Cerrar</button>
           <button className='btn'>
             Finalizar compra
           </button>

@@ -95,38 +95,53 @@ body {
     }
 
     .user-info {
-        color: white;
-        place-content: center;
 
-        .user-name {
-            margin-right: .5rem;
-            text-transform: uppercase;
-            font-size: 1rem;
-            font-weight: 600;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 .5rem;
+
+        .avatar {
+
+            display: flex;
+            align-items: center;
+
+            img{
+                width: 32px;
+                height: 32px;
+            }
         }
 
         .cart-icon {
-            font-size: 1.25rem;
+            font-size: 1.36rem;
             position: relative;
-            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            filter: grayscale(40%);
 
-            &::after {
-                content: attr(4);
-                display: block;
-                width: 1rem;
-                height: 1rem;
-                background-color: #e80f0f;
-                position: absolute;
-                top: -10px;
-                right: -10px;
-                border-radius: 50%;
-                font-size: 13px;
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.15) rotate(2deg);
+                filter: grayscale(0);
+            }
+
+            .order-count {
+                background-color: crimson;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
+                font-size: .75rem;
+                /* line-height: 1rem; */
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: -9px;
+                top: -8px;
+                border-radius: 50%;
             }
+
         }
+
     }
 
 }
@@ -251,22 +266,20 @@ body {
     }
 
     .product-card-container {
+        
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
 
-
-
         .product-card {
+
             padding: 16px;
             border-radius: 8px;
             width: 280px;
             overflow: hidden;
             border: 1px solid transparent;
             transition: border 0.3s, box-shadow 0.3s;
-            transition: all 0.3s;
-
 
             &:hover {
 
@@ -277,17 +290,49 @@ body {
                     visibility: visible !important;
                     opacity: 1 !important;
                 }
+
+                .card-header{
+                    .product-image{
+                        img{
+                            transform: scale(1.15) rotate(2deg);
+                            filter: grayscale(0);
+                        }
+                    }
+                }
+
+
             }
 
             .card-header {
+                overflow: hidden;
 
                 .product-image {
+
                     position: relative;
 
                     img {
                         width: 100%;
                         height: 300px;
                         object-fit: cover;
+                        transition: transform 0.3s;
+                        filter: grayscale(35%);
+                        
+                    }
+
+                    .product-category {
+                        position: absolute;
+                        top: 5px;
+                        left: 18%;
+                        translate: -50%;
+                        font-weight: bold;
+                        width: min-content;
+                        color: white;
+                        padding: .4rem .5rem;
+                        line-height: 1;
+                        font-size: .75rem;
+                        border-radius: .5rem;
+                        background-color: royalblue;
+                        text-transform: uppercase;
                     }
 
                     .btn-quickview {

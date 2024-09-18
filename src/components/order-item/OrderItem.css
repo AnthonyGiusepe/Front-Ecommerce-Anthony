@@ -1,0 +1,53 @@
+
+.order-item{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+
+    &:not(:last-child){
+        border-bottom: 1px solid rgba(220, 20, 60, 0.15);
+    }
+
+    .item-image img{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .item-info{
+        flex: 1;
+        font-weight: 500;
+    }
+
+    .item-count{
+
+        .item-input{
+            width: 7ch;
+        }
+
+    }
+
+
+
+    .item-actions{
+        color: #333;
+
+        .btn-trash{
+            padding: .125rem;
+            width: 25px;
+            height: 25px;
+            background-color: royalblue;
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: .125rem;
+
+            &.btn-danger{
+                background-color: crimson;
+            }
+
+        }
+    }
+
+}

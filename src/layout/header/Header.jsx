@@ -1,8 +1,13 @@
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import userImg from "/src/image/default-user.jpeg"
+import { useOrder } from "../../context/OrderContext";
 
 export default function Header() {
+
+  const { setToggleModal, count } = useOrder()
+
   return (
 
     <header className="main-header">
@@ -44,17 +49,29 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <NavLink className='nav-link' to='admin-product'>
-              Admin-Product
+                Admin-Product
               </NavLink>
             </li>
           </ul>
         </nav>
       </div>
+
       <div className="user-info">
-        <span className="user-name">Anthony</span>
-        <FontAwesomeIcon className="cart-icon" icon={faCartShopping} data-count={4} />
+        <div className="cart-icon">
+
+          <div className="order-count">{count}</div>
+
+          <FontAwesomeIcon icon={faCartShopping}
+            onClick={() => setToggleModal(estado => !estado)} />
+
+        </div>
+
+        <div className="avatar">
+          <img src={userImg} alt="user" />
+        </div>
       </div>
     </header>
 
   )
 }
+// <button onClick={()=> setToggleModal(!toggleModal)}>Ver Carrito</button>
