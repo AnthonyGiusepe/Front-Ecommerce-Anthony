@@ -52,6 +52,11 @@ export default function Header() {
                 Admin-Product
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className='nav-link' to='admin-user'>
+                Admin-User
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

@@ -24,7 +24,6 @@ export default function ProductDetail() {
   async function getProduct() {
     try {
       const res = await axios.get(`${URL}/products/${id}`)
-      console.log(res)
       setproduct(res.data)
 
 
