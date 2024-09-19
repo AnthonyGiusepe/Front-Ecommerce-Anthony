@@ -101,8 +101,8 @@ export function OrderProvider({ children }) {
         setOrder(orderFiltered)
     }
 
-    function changeItemQuantity(id, value) {
-
+    function changeItemQuantity(product, value) {
+        
         // const newOrder = order.map(prod =>{
 
 
@@ -115,7 +115,11 @@ export function OrderProvider({ children }) {
 
         // setOrder(newOrder)
 
-        const producto = order.find(prod => prod.id === id)
+        const producto = order.find(prod => prod.id === product.id);
+        if(!producto) {
+            product.quantity = value;
+            return setOrder([...order, product])
+        }
 
         producto.quantity = value
 

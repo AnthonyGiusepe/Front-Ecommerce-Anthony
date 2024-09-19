@@ -26,7 +26,7 @@ export default function OrderItem({ item }) {
                 type="number" 
                 defaultValue={item.quantity} 
                 min='1' 
-                onChange={(e)=> changeItemQuantity(item.id, e.target.valueAsNumber)}/>
+                onChange={(e)=> changeItemQuantity(item, e.target.valueAsNumber)}/>
       </div>
       <div className="item-actions">
         <button className='btn-trash btn-danger' onClick={()=> removeProduct(item.id)}>

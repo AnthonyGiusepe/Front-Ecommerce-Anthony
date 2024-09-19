@@ -11,7 +11,8 @@ const URL = import.meta.env.VITE_SERVER_URL
 
 export default function ProductDetail() {
 
-  const { addProduct, changeItemQuantity } = useOrder();
+  const { addProduct, changeItemQuantity, order } = useOrder();
+ 
 
   const [product, setproduct] = useState([])
 
@@ -19,14 +20,17 @@ export default function ProductDetail() {
 
   useEffect(() => {
     getProduct()
+    
   }, [])
 
   async function getProduct() {
     try {
       const res = await axios.get(`${URL}/products/${id}`)
+      const temp = order.find(p => p.id === id)
+
+        res.data.quantity =temp?.quantity ?? 1;
+      console.log(res.data)
       setproduct(res.data)
-
-
     } catch (error) {
       console.log(error)
       alert("Error al obtener el producto")
@@ -73,9 +77,9 @@ export default function ProductDetail() {
                 <div className="detail-add">
                   <input className='item-input'
                     type="number"
-                    defaultValue={product.quantity}
+                    defaultValue={product?.quantity }
                     min='1'
-                    onChange={(e) => changeItemQuantity(product.id, e.target.valueAsNumber)} />
+                    onChange={(e) => changeItemQuantity(product, e.target.valueAsNumber)} />
 
                   <div className="detail-cupon">
                     <input
