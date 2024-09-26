@@ -6,6 +6,7 @@ import axios from "axios"
 import { useOrder } from "../../context/OrderContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
+import ProductGallery from "../../components/product-gallery/ProductGallery"
 
 const URL = import.meta.env.VITE_SERVER_URL
 
@@ -21,14 +22,14 @@ export default function ProductDetail() {
   useEffect(() => {
     getProduct()
 
-  }, [])
+  }, [order])
 
   async function getProduct() {
     try {
       const res = await axios.get(`${URL}/products/${id}`)
       const temp = order.find(p => p.id === id)
 
-      res.data.quantity = temp?.quantity ?? 1;
+      res.data.quantity = temp?.quantity ?? 0;
       console.log(res.data)
       setproduct(res.data)
     } catch (error) {
@@ -109,6 +110,9 @@ export default function ProductDetail() {
               </div>
             </div>
           </div>
+          {/* <div>
+          <ProductGallery />
+          </div> */}
         </section>
       </main>
 

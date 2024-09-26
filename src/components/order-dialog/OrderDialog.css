@@ -13,6 +13,7 @@
     transition: opacity .1s ease-in-out;
     animation: showIn .3s ease-in-out forwards;
 
+
     .modal-content{
         background-color: white;
         color: black;
@@ -20,16 +21,62 @@
         border-radius: .25rem;
         box-shadow: 0 0 10px rgba(0,0,0,.1);
         width: calc(100% - 2rem);
-        max-width: 700px;
+        max-width: 750px;
         opacity: 0;
+        max-height: 653px;
+        overflow-y: auto;
         transition: opacity .1s ease-in-out;
         animation: fadeIn .3s ease-in-out forwards;
         transform: translateY(150px);
+
 
         .modal-header{
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
+        }
+
+        .modal-table{
+            flex: 1;
+            padding: 1rem;
+            border-collapse: collapse;
+            font-family: 'Roboto', sans-serif;
+            max-width: 1100px;
+            width: 100%;
+        
+            th, td {
+                padding: .5rem;
+                border: 2px solid #333;
+                
+            }
+        
+            th {
+                padding: .75rem .5rem;
+                background-color: #222;
+                color: white;
+        
+            }
+        
+            tr:nth-child(even) {
+                background-color: #c2c2c2;
+        
+                button{
+                    background-color: #c2c2c2
+                }
+            }
+
+        }
+
+        .list-total{
+            display: flex;
+            font-size: 1rem;
+            justify-content: right;
+            padding: .5rem 1rem;
+            border-top: 1px solid rgba(220, 20, 60, 0.239);
+            list-style: none;
+            width: 100%;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .modal-body{
@@ -86,7 +133,6 @@
             }
 
         }
-
 
     }
 
