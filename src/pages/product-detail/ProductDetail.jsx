@@ -12,7 +12,7 @@ const URL = import.meta.env.VITE_SERVER_URL
 export default function ProductDetail() {
 
   const { addProduct, changeItemQuantity, order } = useOrder();
- 
+
 
   const [product, setproduct] = useState([])
 
@@ -20,7 +20,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     getProduct()
-    
+
   }, [])
 
   async function getProduct() {
@@ -28,7 +28,7 @@ export default function ProductDetail() {
       const res = await axios.get(`${URL}/products/${id}`)
       const temp = order.find(p => p.id === id)
 
-        res.data.quantity =temp?.quantity ?? 1;
+      res.data.quantity = temp?.quantity ?? 1;
       console.log(res.data)
       setproduct(res.data)
     } catch (error) {
@@ -50,7 +50,7 @@ export default function ProductDetail() {
         <section className="detail-section">
           <div className="section-subtitle">
             <div>
-              <NavLink to='/'>Inicio</NavLink>/ {product.name}
+              <NavLink className="subtitle-text" to='/'>Inicio</NavLink> / <span className="subtitle-product">{product.name}</span>
             </div>
           </div>
           <div className="product-container">
@@ -75,34 +75,20 @@ export default function ProductDetail() {
               <div className="detail-quantity-container">
                 <div className="detaile-quantity-name">cantidad</div>
                 <div className="detail-add">
+
                   <input className='item-input'
                     type="number"
-                    defaultValue={product?.quantity }
+                    defaultValue={product?.quantity}
                     min='1'
                     onChange={(e) => changeItemQuantity(product, e.target.valueAsNumber)} />
 
-                  <div className="detail-cupon">
-                    <input
-                      type="text"
-                      name="fullname"
-                      id="fullname"
-                      required=""
-                      autoFocus=""
-                      minLength={10}
-                      maxLength={10}
-                      placeholder="Ingrese Cupon"
-                    />
-                    <div className="detail-cupon-name">
-                      Cupon
-                      <br /> Descuento
-                    </div>
+                  <div className="detail-btn">
+                    <button onClick={() => addProduct(product)}>Añadir al carrito</button>
                   </div>
+
                 </div>
               </div>
-              <div className="detail-btn">
-                <button onClick={() => addProduct(product)}>Añadir al carrito</button>
-                <button>Comprar Ahora</button>
-              </div>
+
               <div className="detail-footer">
                 <div className="detail-footer-text-1">
                   <i className="fa-solid fa-check" /> Retiro disponible en

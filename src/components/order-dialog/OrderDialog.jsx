@@ -14,7 +14,7 @@ export default function OrderDialog() {
 
       <div className="modal-content" onClick={ (e)=> e.stopPropagation() }>
 
-        <div className="modal-header">titulo de modal</div>
+        <div className="modal-header">Orden Actual</div>
         
         <div className="modal-body">
 
@@ -27,7 +27,7 @@ export default function OrderDialog() {
             }
 
             <li className='list-total'>
-              S/. {total}
+              Total: S/. {total}
             </li>
 
           </ul>
@@ -36,7 +36,7 @@ export default function OrderDialog() {
 
         <div className="modal-footer">
           <button onClick={() => setToggleModal(!toggleModal)}>Cerrar</button>
-          <button className='btn'>
+          <button className='btn-modal'>
             Finalizar compra
           </button>
         </div>
