@@ -110,9 +110,6 @@ export default function ProductDetail() {
               </div>
             </div>
           </div>
-          {/* <div>
-          <ProductGallery />
-          </div> */}
         </section>
       </main>
 

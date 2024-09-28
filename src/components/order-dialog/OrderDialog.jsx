@@ -14,60 +14,66 @@ export default function OrderDialog() {
 
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
 
-        <div className="modal-header">Orden Actual</div>
+      <div className="modal-header">Orden Actual</div>
 
-        <table className="modal-table">
+        <div className='modal-content-table'>
 
-          <thead>
-            <tr>
-              <th>Imagen</th>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Subtotal</th>
-              <th>Cantidad</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
+          <table className="modal-table">
+
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {
+                order.map(item => {
+                  return <OrderItem key={item.id} item={item} />
+                })
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div>
+
+          <div className='list-total'>Total: S/. {total}</div>
+
+          {/* <div className="modal-body">
+
+            <ul className="order-list">
+
+              {
+                order.map((item) => (
+                  <OrderItem key={item.id} item={item} />
+                ))
+              }
+
+            </ul>
+
+          </div> */}
+
+          <div className="modal-footer">
+            <button onClick={() => setToggleModal(!toggleModal)}>Cerrar</button>
+            <button className='btn-modal'>
+              Finalizar compra
+            </button>
+          </div>
           
-          <tbody>
-
-            {
-              order.map(item => {
-                return <OrderItem key={item.id} item={item} />
-              })
-            }
-
-          </tbody>
-
-
-
-        </table>
-
-        <div className='list-total'>Total: S/. {total}</div>
-
-        {/* <div className="modal-body">
-
-          <ul className="order-list">
-
-            {
-              order.map((item) => (
-                <OrderItem key={item.id} item={item} />
-              ))
-            }
-
-          </ul>
-
-        </div> */}
-
-        <div className="modal-footer">
-          <button onClick={() => setToggleModal(!toggleModal)}>Cerrar</button>
-          <button className='btn-modal'>
-            Finalizar compra
-          </button>
         </div>
 
       </div>
-      
+
     </div>
 
   )

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './OrderItem.css'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useOrder } from '../../context/OrderContext'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 export default function OrderItem({ item }) {
 
@@ -24,7 +24,7 @@ export default function OrderItem({ item }) {
       <td>
       <div className="item-actions">
         <button className='btn-trash btn-danger' onClick={()=> removeProduct(item.id)}>
-        <FontAwesomeIcon icon={faTrash}/>
+        <FontAwesomeIcon icon={faTrashCan} />
         </button>
 
       </div>

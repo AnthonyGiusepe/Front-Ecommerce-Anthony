@@ -67,23 +67,27 @@
 
         .btn-trash{
             padding: .125rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             width: 35px;
             height: 35px;
-            background-color: royalblue;
             color: white;
             outline: none;
             border: none;
             border-radius: .125rem;
 
             &.btn-danger{
-                background-color: crimson;
+                color: crimson;
             }
 
             &:hover{
                 cursor: pointer;
             }
 
+        }
+
+        button{
+            border: none;
+            background-color: white;
         }
     }
 

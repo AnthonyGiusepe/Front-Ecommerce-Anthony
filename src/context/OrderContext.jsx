@@ -99,10 +99,21 @@ export function OrderProvider({ children }) {
         const orderFiltered = order.filter(prod => prod.id !== id)
 
         setOrder(orderFiltered)
+
+        Swal.fire({
+            position:'top',
+            width: '350px',
+            height: '150px',
+            title: 'Producto eliminado',
+            text: 'Se elimino el producto de la orden actual',
+            icon: 'success',
+            timer: 2000
+        })
+
     }
 
     function changeItemQuantity(product, value) {
-        
+
         // const newOrder = order.map(prod =>{
 
 
@@ -116,7 +127,7 @@ export function OrderProvider({ children }) {
         // setOrder(newOrder)
 
         const producto = order.find(prod => prod.id === product.id);
-        if(!producto) {
+        if (!producto) {
             product.quantity = value;
             return setOrder([...order, product])
         }
