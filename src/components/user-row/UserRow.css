@@ -1,4 +1,4 @@
-.admin-table-row {
+.admin-user-row {
 
     .image {
 
@@ -9,6 +9,7 @@
             height: 90px;
             object-fit: cover;
             padding: 0.3rem;
+            border-radius: 50%;
         }
     }
 
@@ -22,46 +23,13 @@
 
     }
 
-    .description {
+    .mail, .password, .repeatpassword, .country{
 
-        text-transform: lowercase;
-
-        .description-container {
-
-            font-style: italic;
-            color: #212121;
-            text-align: left;
-            padding: 1rem;
-            text-transform: initial;
-
-
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-            -webkit-box-orient: vertical;
-
-        }
-
-        /* No funciona el first-letter debido al webkitbox */
-        /* &::first-letter {
-            text-transform: uppercase !important;
-        } */
-
-    }
-
-    .price {
-        font-size: .95rem;
-        color: rgb(8, 12, 240);
+        font-size: 1rem;
         text-align: center;
-        width: 100px;
-        font-weight: 600;
-
+        padding: 0.75rem;
     }
 
-    .category{
-        text-align: center;
-        width: 100px;
-    }
 
     .date {
         font-size: .9rem;

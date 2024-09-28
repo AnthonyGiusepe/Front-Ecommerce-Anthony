@@ -1,0 +1,94 @@
+
+.order-item{
+
+    gap: .5rem;
+    align-items: center;
+
+    &:not(:last-child){
+        border-bottom: 1px solid rgba(220, 20, 60, 0.15);
+    }
+
+    .item-image{
+        background-color: white;
+
+        img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            padding: 0.3rem;
+            border-radius: 50%;
+        }
+    }
+
+    .item-info{
+        text-transform: capitalize;
+        font-size: 1rem;
+        text-align: center;
+        font-weight: 600;
+        padding: 0.75rem;
+
+    }
+
+    .item-price{
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
+        width: 91px;
+    }
+
+    .item-subtotal{
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
+        width: 91px;
+    }
+
+    .item-count{
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
+
+        .item-input{
+            height: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 7ch;
+            text-align: center;
+        }
+
+    }
+
+
+
+    .item-actions{
+        color: #333;
+        display: flex;
+        justify-content: center;
+
+        .btn-trash{
+            padding: .125rem;
+            font-size: 1.8rem;
+            width: 35px;
+            height: 35px;
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: .125rem;
+
+            &.btn-danger{
+                color: crimson;
+            }
+
+            &:hover{
+                cursor: pointer;
+            }
+
+        }
+
+        button{
+            border: none;
+            background-color: white;
+        }
+    }
+
+}

@@ -1,11 +1,12 @@
-.admin-container-product {
+.admin-container-user {
     padding: 1.5rem;
     display: flex;
+    justify-content: space-evenly;
     gap: 1rem;
     overflow-x: auto;
     font-family: 'Roboto';
 
-    .form-container-product {
+    .form-container-user {
 
         flex: 0 0 360px;
 
@@ -42,10 +43,6 @@
             }
         
         }
-    }
-
-    .table-container-product {
-        flex: 1;
     }
 
     @media screen and (width < 808px) {

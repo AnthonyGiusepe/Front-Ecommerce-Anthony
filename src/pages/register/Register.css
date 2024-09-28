@@ -1,6 +1,6 @@
 .register-container {
     flex-grow: 1;
-    max-width: 390px;
+    max-width: 400px;
     margin: 0 auto;
     color: black;
     place-content: center;
@@ -20,7 +20,7 @@
     
         .section-subtitle {
             font-size: 1rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             text-align: center;
             display: block;
             text-transform: uppercase;
@@ -33,7 +33,8 @@
             margin-bottom: 2rem;
 
             .input-container{
-                margin-bottom: 8px;
+                margin-bottom: 1rem;
+                gap: .5rem;
                 display: flex;
                 flex-direction: column;
 

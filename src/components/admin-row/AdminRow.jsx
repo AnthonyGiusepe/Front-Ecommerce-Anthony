@@ -14,7 +14,7 @@ export default function AdminRow({ producto, deleteProduct, handleEditProduct })
           {producto.description}
         </div>
       </td>
-      <td className="price"> {producto.price} </td>
+      <td className="price"> S/. {producto.price} </td>
       <td className="category"> {producto.category} </td>
       <td className="date"> {producto.createdAt} </td>
       <td className="actions">

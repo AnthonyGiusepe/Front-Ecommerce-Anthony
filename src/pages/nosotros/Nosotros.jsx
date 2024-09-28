@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Nosotros.css'
+import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 export default function Nosotros() {
   return (
@@ -58,16 +60,16 @@ export default function Nosotros() {
               <h2 className="dev-redes-title">Redes sociales</h2>
               <div className="dev-redes-sociales">
                 <div className="dev-redes-border">
-                  <i className="fa-brands fa-whatsapp" />
+                <FontAwesomeIcon icon={faWhatsapp} />
                 </div>
                 <div className="dev-redes-border">
-                  <i className="fa-brands fa-facebook" />
+                <FontAwesomeIcon icon={faFacebook} />
                 </div>
                 <div className="dev-redes-border">
-                  <i className="fa-brands fa-instagram" />
+                <FontAwesomeIcon icon={faInstagram} />
                 </div>
                 <div className="dev-redes-border">
-                  <i className="fa-brands fa-twitter" />
+                <FontAwesomeIcon icon={faTwitter} />
                 </div>
               </div>
             </div>
