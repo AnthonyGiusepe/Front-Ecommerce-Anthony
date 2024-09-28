@@ -1,3 +1,215 @@
-body{
-    color: black;
+.detail-container {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+
+    .detail-section {
+        color: black;
+        overflow-x: auto;
+
+        .section-subtitle {
+            font-family: Zurich, sans-serif;
+            margin-left: 1.5rem;
+            font-size: 0.90rem;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            text-align: left;
+            display: block;
+            font-weight: 600;
+
+
+            .subtitle-text {
+                color: rgba(2, 2, 2, 0.7);
+                text-decoration: none;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-weight: bolder;
+                transition: ease-in-out 0.3s;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+            }
+
+            .subtitle-product{
+                font-size: .65rem;
+            }
+        }
+
+        .product-container {
+            margin: 1rem;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-evenly;
+
+
+
+            .detail-img {
+                height: 500px;
+                place-content: center;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .detail-description {
+
+                width: 550px;
+                padding: 1.5rem;
+                place-content: center;
+
+                .detail-name {
+                    font-size: 2rem;
+                    font-style: normal;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+                    font-family: monospace;
+                    margin: 1.2rem 0 1.2rem 0;
+                }
+
+                .detail-price {
+                    color: rgb(222, 42, 42);
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 1.3rem;
+                    margin-bottom: 10px;
+                }
+
+
+                .detail-reseña {
+                    display: flex;
+                    gap: 2rem;
+                    align-items: center;
+                    font-size: 0.75rem;
+                    border-bottom: 1px solid #ddd;
+                    padding-bottom: 8px;
+
+                    .detail-category {
+                        color: #a4a4a4;
+                    }
+
+                    .detail-review {
+                        color: #fed700;
+                    }
+                }
+
+
+                .detail-quantity-container {
+
+                    margin-bottom: 1rem;
+
+                    .detaile-quantity-name {
+                        margin-top: 1rem;
+                        font-style: normal;
+                        font-size: .7rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 1.5px;
+                    }
+
+                    .detail-add {
+
+                        display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        text-align: center;
+                        margin-top: .8rem;
+
+
+                        .item-input {
+                            height: 30px;
+                            font-size: 1rem;
+                            font-weight: 600;
+                            width: 14ch;
+                            text-align: center;
+                        }
+
+                        .detail-btn {
+                            display: flex;
+                            justify-content: space-between;
+
+                            >button {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1em;
+                                line-height: 1;
+                                text-align: center;
+                                height: 40px;
+                                width: 100%;
+                                padding: 1rem;
+                                border: 1px solid #e1e1e1;
+                                border-radius: 6px;
+                                text-transform: capitalize;
+                                font-weight: 600;
+                                cursor: pointer;
+                                background-color: black;
+                                color: white;
+                                transition: 0.4s all;
+                                max-width: 200px;
+                                align-self: center;
+
+                                &:hover {
+                                    background-color: #BB272D;
+                                }
+                            }
+                        }
+
+                    }
+
+
+
+
+                }
+
+
+
+                .detail-footer {
+
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+
+                    .fa-check {
+                        color: green;
+                    }
+
+                    .detail-footer-text-1 {
+                        font-size: 0.9rem;
+                        font-style: normal;
+                        font-weight: bold;
+                    }
+
+                    .detail-footer-text-2 {
+                        font-size: 0.75rem;
+                        color: rgba(2, 2, 2, 0.7);
+                    }
+
+                    .detail-footer-description {
+                        font-size: 0.9rem;
+                        font-style: normal;
+                        font-weight: 400;
+
+                        .detail-buyname {
+                            margin-top: .5rem;
+                            margin-bottom: .5rem;
+                            font-weight: bold;
+                        }
+
+                        .detail-desciption-text {
+                            text-align: justify;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
 }

@@ -1,6 +1,6 @@
 
 .order-item{
-    display: flex;
+
     gap: .5rem;
     align-items: center;
 
@@ -8,22 +8,52 @@
         border-bottom: 1px solid rgba(220, 20, 60, 0.15);
     }
 
-    .item-image img{
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        object-fit: cover;
+    .item-image{
+        background-color: white;
+
+        img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            padding: 0.3rem;
+            border-radius: 50%;
+        }
     }
 
     .item-info{
-        flex: 1;
-        font-weight: 500;
+        text-transform: capitalize;
+        font-size: 1rem;
+        text-align: center;
+        font-weight: 600;
+        padding: 0.75rem;
+
+    }
+
+    .item-price{
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
+        width: 91px;
+    }
+
+    .item-subtotal{
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
+        width: 91px;
     }
 
     .item-count{
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
 
         .item-input{
+            height: 30px;
+            font-size: 1rem;
+            font-weight: 600;
             width: 7ch;
+            text-align: center;
         }
 
     }
@@ -32,21 +62,32 @@
 
     .item-actions{
         color: #333;
+        display: flex;
+        justify-content: center;
 
         .btn-trash{
             padding: .125rem;
-            width: 25px;
-            height: 25px;
-            background-color: royalblue;
+            font-size: 1.8rem;
+            width: 35px;
+            height: 35px;
             color: white;
             outline: none;
             border: none;
             border-radius: .125rem;
 
             &.btn-danger{
-                background-color: crimson;
+                color: crimson;
             }
 
+            &:hover{
+                cursor: pointer;
+            }
+
+        }
+
+        button{
+            border: none;
+            background-color: white;
         }
     }
 

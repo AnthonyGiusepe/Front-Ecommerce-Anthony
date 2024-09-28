@@ -23,12 +23,14 @@ export default function ProductCard({ prod }) {
               {prod.category}
             </div>
 
-            <button className="btn-quickview">
-              Ver más
-              <NavLink to={`/product-detail/${prod.id}`} className="product-btn">
-                <FontAwesomeIcon icon={faUpRightFromSquare} />
-              </NavLink>
-            </button>
+            <NavLink to={`/product-detail/${prod.id}`} className="product-btn">
+
+              <button className="btn-quickview">
+                Ver más <FontAwesomeIcon icon={faUpRightFromSquare} />
+              </button>
+
+            </NavLink>
+
 
           </div>
 
@@ -40,13 +42,14 @@ export default function ProductCard({ prod }) {
 
         <div className="product-price-date">
           <div className="product-date">{prod.createdAt}</div>
-          <div className="product-normal-price">{prod.price}</div>
+          <div className="product-normal-price">S/. {prod.price}</div>
         </div>
 
         <div className="button-footer">
           <button className="btn-buy" onClick={() => addProduct(prod)}>
             <div>Comprar Producto</div>
-            <FontAwesomeIcon icon={faCartShopping} /></button>
+            <FontAwesomeIcon icon={faCartShopping} />
+          </button>
         </div>
 
       </div>

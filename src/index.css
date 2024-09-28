@@ -350,23 +350,16 @@ body {
                         border: 1px solid #e1e1e1;
                         border-radius: 3px;
                         text-transform: uppercase;
-                        font-weight: 600;
+                        font-weight: bold;
                         cursor: pointer;
                         opacity: 0;
                         visibility: hidden;
-                        transition: all 0.3s;
-
-                        a {
-                            text-decoration: none;
-                            overflow: hidden;
-
-                            &:hover {
-                                text-decoration: underline;
-                            }
-                        }
+                        transition: ease-in-out 0.3s;
+                        color: blue;
 
                         &:hover {
                             background-color: #eef0f1;
+                            font-size: .96rem;
                         }
 
                     }
@@ -414,6 +407,10 @@ body {
             .button-footer {
 
                 .btn-buy {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: .6rem;
                     font-size: 1em;
                     line-height: 1;
                     text-align: center;
@@ -679,7 +676,7 @@ body {
 
 /*! === Media Header === */
 
-@media screen and (width <=808px) {
+@media screen and (width <=975px) {
 
     .main-header {
 

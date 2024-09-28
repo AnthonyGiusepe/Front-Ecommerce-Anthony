@@ -1,39 +1,35 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './OrderItem.css'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useOrder } from '../../context/OrderContext'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 export default function OrderItem({ item }) {
 
   const {removeProduct, changeItemQuantity} = useOrder()
 
   return (
-    <li className="order-item" key={item.id}>
-      <div className='item-image'>
-        <img src={item.image} alt="" />
-      </div>
-      <div className="item-info">
-        {item.name}
-      </div>
-      <div className="item-price">
-        S/. {item.price}
-      </div>
-      <div className="item-subtotal">
-        S/. {item.price * item.quantity}
-      </div>
-      <div className="item-count">
+    <tr className="order-item">
+
+      <td className='item-image'><img src={item.image} alt={item.name} /></td>
+      <td className="item-info">{item.name}</td>
+      <td className="item-price">S/. {item.price} </td>
+      <td className="item-subtotal">S/. {item.price * item.quantity} </td>
+      <td className="item-count">
         <input  className='item-input'
                 type="number" 
                 defaultValue={item.quantity} 
                 min='1' 
-                onChange={(e)=> changeItemQuantity(item.id, e.target.valueAsNumber)}/>
-      </div>
+                onChange={(e)=> changeItemQuantity(item, e.target.valueAsNumber)}/>
+      </td>
+      <td>
       <div className="item-actions">
         <button className='btn-trash btn-danger' onClick={()=> removeProduct(item.id)}>
-        <FontAwesomeIcon icon={faTrash}/>
+        <FontAwesomeIcon icon={faTrashCan} />
         </button>
 
       </div>
-    </li>
+      </td>
+
+    </tr>
   )
 }

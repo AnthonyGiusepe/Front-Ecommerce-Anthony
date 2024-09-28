@@ -1,0 +1,56 @@
+.admin-container-user {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    overflow-x: auto;
+    font-family: 'Roboto';
+
+    .form-container-user {
+
+        flex: 0 0 360px;
+
+        .titleproduct{
+            font-size: 2rem;
+            text-transform: initial;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: inherit;
+        }
+
+        .adminForm{
+            max-width: 1200px;
+            margin: 0 auto;
+    
+            .input-group {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                margin-bottom: 1rem;
+
+                .input-error{
+                    color: #BB272D;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+            
+            }
+
+            .llenar{
+                color: red;
+            }
+        
+        }
+    }
+
+    @media screen and (width < 808px) {
+        flex-direction: column;
+        .form-container-product {
+            order: 1;
+        }
+    }
+
+
+}
