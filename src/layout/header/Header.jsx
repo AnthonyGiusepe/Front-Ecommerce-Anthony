@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import userImg from "/src/image/default-user.jpeg"
 import { useOrder } from "../../context/OrderContext";
+import { useUser } from "../../context/UserContext";
 
 export default function Header() {
 
   const { setToggleModal, count } = useOrder()
+  const { user, logout } = useUser()
 
   return (
 
@@ -47,21 +49,38 @@ export default function Header() {
                 Nosotros
               </NavLink>
             </li>
-            <li className="nav-item">
+            {user?.role === "admin" && <li className="nav-item">
               <NavLink className='nav-link' to='admin-product'>
                 Admin-Product
               </NavLink>
-            </li>
-            <li className="nav-item">
+            </li>}
+            {user?.role === "admin" && <li className="nav-item">
               <NavLink className='nav-link' to='admin-user'>
                 Admin-User
               </NavLink>
-            </li>
+            </li>}
+
+            {user ? (
+              <li className="nav-item">
+                <NavLink className='nav-link' onClick={logout}>
+                  Logout
+                </NavLink>
+              </li>) : (
+              <li className="nav-item">
+                <NavLink className='nav-link' to='/login'>
+                  login
+                </NavLink>
+              </li>
+            )}
+
           </ul>
         </nav>
       </div>
 
       <div className="user-info">
+
+        {user?.name || "NO USER"}
+
         <div className="cart-icon">
 
           <div className="order-count">{count}</div>

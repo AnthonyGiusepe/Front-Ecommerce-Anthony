@@ -7,7 +7,7 @@ export default function UserRow({ user, deleteUser, handleEditUser }) {
     <tr className="admin-user-row">
       <td className="image"> <img src={user.image} alt={user.name} /> </td>
       <td className="name"> {user.name} </td>
-      <td className="mail"> {user.mail} </td>
+      <td className="mail"> {user.email} </td>
       <td className="password"> {user.password} </td>
       <td className="repeatpassword"> {user.repeatpassword} </td>
       <td className="date"> {user.date} </td>

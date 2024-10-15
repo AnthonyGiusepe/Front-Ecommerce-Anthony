@@ -1,7 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import './Login.css'
+import { useForm } from 'react-hook-form'
+import { useUser } from '../../context/UserContext'
+
 
 export default function Login() {
+
+  const { register, handleSubmit } = useForm()
+  const { login } = useUser()
+
+  // function handleLogin(data) {
+    
+  //   login(data)
+
+  // }
+
   return (
     <>
 
@@ -12,20 +25,17 @@ export default function Login() {
             Por favor, introduzca su correo electrónico y contraseña:
           </h2>
           <div className="login-form">
-            <form>
+            <form onSubmit={handleSubmit(login)}>
               <div className="input-container">
                 <label htmlFor="email">
                   Dirección de correo electrónico <span className="llenar">*</span>
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  id="email"
-                  required=""
-                  minLength={5}
-                  maxLength={100}
-                  placeholder="Correo"
+                  placeholder="Correo Electronico"
                   pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"
+
+                  {...register("email", { required: "El email es requerido" })}
                 />
               </div>
               <div className="input-container">
@@ -34,12 +44,16 @@ export default function Login() {
                 </label>
                 <input
                   type="password"
-                  name="password"
-                  id="password"
-                  required=""
-                  minLength={4}
-                  maxLength={50}
                   placeholder="Contraseña"
+
+                  {...register("password", {
+                    required: "El password es requerido",
+                    minLength: {
+                      value: 4,
+                      message: "El email debe tener al menos 4 caracteres"
+                    }
+                  })
+                  }
                 />
               </div>
               <div className="input-container">
