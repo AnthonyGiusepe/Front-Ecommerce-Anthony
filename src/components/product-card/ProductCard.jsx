@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
 import { useOrder } from '../../context/OrderContext'
+import { formatDate } from '../../../utils/formatDate'
+
+const URL = import.meta.env.VITE_LOCAL_SERVER
 
 export default function ProductCard({ prod }) {
 
@@ -17,13 +20,13 @@ export default function ProductCard({ prod }) {
 
           <div className="product-image">
 
-            <img src={prod.image} alt={prod.name} />
+            <img src={`${URL}/images/products/${prod.image}`} alt={prod.name} />
 
             <div className='product-category'>
               {prod.category}
             </div>
 
-            <NavLink to={`/product-detail/${prod.id}`} className="product-btn">
+            <NavLink to={`/product-detail/${prod._id}`} className="product-btn">
 
               <button className="btn-quickview">
                 Ver más <FontAwesomeIcon icon={faUpRightFromSquare} />
@@ -41,8 +44,8 @@ export default function ProductCard({ prod }) {
         </div>
 
         <div className="product-price-date">
-          <div className="product-date">{prod.createdAt}</div>
-          <div className="product-normal-price">S/. {prod.price}</div>
+          <div className="product-date">{formatDate(prod.createdAt)}</div>
+          <div className="product-normal-price">S/. {prod.price}.00</div>
         </div>
 
         <div className="button-footer">

@@ -7,13 +7,13 @@ import UserTable from '../../components/user-table/UserTable'
 import { useUser } from '../../context/UserContext'
 
 
-const URL = import.meta.env.VITE_SERVER_URL
+// const URL = import.meta.env.VITE_SERVER_URL
 
-// const URL2 = import.meta.env.VITE_LOCAL_SERVER
+const URL2 = import.meta.env.VITE_LOCAL_SERVER
 
 export default function AdminUser() {
 
-  // const { token } = useUser()
+  const { token, logout } = useUser()
 
   const [users, setUser] = useState([])
 
@@ -53,19 +53,24 @@ export default function AdminUser() {
     try {
       //carga de productos
 
+      const res = await axios.get(`${URL2}/users`,{
+        headers: {
+          Authorization: token
+        }
+      })
 
-
-      // const res = await axios.get(`${URL2}/users`,{
-      //   headers: {
-      //     Authorization: token
-      //   }
-      // })
-
-      const res = await axios.get(`${URL}/users`)
-      console.log(res.data)
+      // const res = await axios.get(`${URL}/users`)
+      // console.log(res.data)
       setUser(res.data)
 
     } catch (error) {
+
+      if(error.res.status === 401){
+        alert("Su sesion a caducado, debe registrarse nuevamente")
+        logout()
+        return
+      }
+      alert("Error al obtener usuarios")
       console.log(error)
     }
   }
