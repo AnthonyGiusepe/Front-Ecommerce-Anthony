@@ -111,9 +111,21 @@ export default function AdminUser() {
 
     try {
 
+      const formData = new FormData()
+
+      formData.append("name", usuario.name)
+      formData.append("email", usuario.email)
+      formData.append("password", usuario.password)
+      formData.append("date", usuario.date)
+      formData.append("country", usuario.country)
+
+      if (usuario.image[0]) {
+        formData.append("image", usuario.image[0])
+      }
+
       if (selectedUser) {
         const { _id : id } = selectedUser;
-        const res = await axios.put(`${URL2}/users/${id}`, usuario, {
+        const res = await axios.put(`${URL2}/users/${id}`, formData, {
           headers: {
             Authorization: token
           }
@@ -132,7 +144,7 @@ export default function AdminUser() {
 
       } else {
 
-        const res = await axios.post(`${URL2}/users`, usuario)
+        const res = await axios.post(`${URL2}/users`, formData)
         console.log(res.data)
         reset()
 
@@ -442,7 +454,7 @@ export default function AdminUser() {
               <div className="input-group">
 
                 <label htmlFor="image">Seleccione Imagen <span className="llenar">*</span></label>
-                <input type="url" {...register("image", { required: true })} />
+                <input accept="image/*" type="file" {...register("image", { required: true })} />
 
                 {errors.category && <div className="input-error">El campo es requerido</div>}
 

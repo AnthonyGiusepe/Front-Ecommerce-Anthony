@@ -191,6 +191,7 @@ export default function AdminProduct() {
           <form onSubmit={handleSubmit(onProductSubmit)}>
 
             <div className="adminForm">
+              
               <div className="input-group">
 
                 <label htmlFor="name">Nombre Producto <span className="llenar">*</span></label>

@@ -7,7 +7,7 @@ const URL = import.meta.env.VITE_LOCAL_SERVER
 export default function UserRow({ user, deleteUser, handleEditUser }) {
   return (
     <tr className="admin-user-row">
-      <td className="image"> <img src={`${URL}/images/products/${user.image}`} alt={user.name} /> </td>
+      <td className="image"> <img src={`${URL}/images/users/${user.image}`} alt={user.name} /> </td>
       <td className="name"> {user.name} </td>
       <td className="mail"> {user.email} </td>
       <td className="password"> {user.password} </td>

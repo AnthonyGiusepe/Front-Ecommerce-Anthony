@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const URL = import.meta.env.VITE_SERVER_URL
+const URL = import.meta.env.VITE_LOCAL_SERVER
 
 export default function Register() {
 
@@ -16,8 +16,8 @@ export default function Register() {
     try {
 
       const res = await axios.post(`${URL}/users`, usuario)
-      console.log(res.data)
-      reset()
+        console.log(res.data)
+        reset()
 
       Swal.fire({
         title: 'Creacion Correcta',
@@ -71,7 +71,7 @@ export default function Register() {
                 <input
                   type="text"
                   id="mail"
-                  {...register("mail", { required: true, minLength: 3 })
+                  {...register("email", { required: true, minLength: 3 })
                   }
                   placeholder="Correo"
                 />
@@ -93,20 +93,6 @@ export default function Register() {
 
                 {errors.password?.type === 'required' && <div className="input-error">El campo es requerido</div>}
                 {errors.password?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 5</div>}
-
-              </div>
-
-              <div className="input-container">
-
-                <label htmlFor="repeatpassword">Repetir Contraseña <span className="llenar">*</span></label>
-                <input type="text"
-                  id="repeatpassword"
-                  placeholder="Repetir Contraseña"
-                  {...register("repeatpassword", { required: true, minLength: 5 })
-                  } />
-
-                {errors.repeatpassword?.type === 'required' && <div className="input-error">El campo es requerido</div>}
-                {errors.repeatpassword?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 5</div>}
 
               </div>
 
