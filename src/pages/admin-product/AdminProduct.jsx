@@ -4,12 +4,17 @@ import { useForm } from "react-hook-form"
 import './AdminProduct.css'
 import AdminTable from "../../components/admin-table/AdminTable";
 import Swal from "sweetalert2";
+import Pagination from "../../components/pagination/Pagination";
 
-const URL = import.meta.env.VITE_SERVER_URL
+const URL = import.meta.env.VITE_LOCAL_SERVER
 
 export default function AdminProduct() {
 
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([])
+  //Para la paginacion
+  const [limit, setLimit] = useState(5)
+  const [total, setTotal] = useState(0)
   //estado para manejar la edicion de los productos
   const [selectedProduct, setSelectedProduct] = useState(null)
 
@@ -17,7 +22,8 @@ export default function AdminProduct() {
 
   useEffect(() => {
     getProducts()
-  }, [])
+    getCategories()
+  }, [limit])
 
   useEffect(() => {
 
@@ -45,16 +51,31 @@ export default function AdminProduct() {
 
   }, [selectedProduct, setValue, reset])
 
-  async function getProducts() {
+  async function getCategories() {
+    try {
+
+      const response = await axios.get(`${URL}/categories`)
+      console.log(response)
+      setCategories(response.data.category)
+
+    } catch (error) {
+      console.log(error)
+      alert("No se pudieron cargar las categorias")
+    }
+  }
+
+  async function getProducts(skip = 0) {
 
     try {
       //carga de productos
 
-      const res = await axios.get(`${URL}/products`)
+      const res = await axios.get(`${URL}/products?skip=${skip}&limit=${limit}`)
       console.log(res.data)
 
-      const newProduct = res.data
+      const newProduct = res.data.product
       setProducts(newProduct)
+
+      setTotal(res.data.total)
 
     } catch (error) {
       console.log(error)
@@ -91,13 +112,25 @@ export default function AdminProduct() {
 
 
   async function onProductSubmit(producto) {
-    console.log(producto)
 
     try {
 
+      const formData = new FormData()
+
+      formData.append("name", producto.name)
+      formData.append("price", producto.price)
+      formData.append("description", producto.description)
+      formData.append("category", producto.category)
+      formData.append("createdAt", producto.createdAt)
+
+      if (producto.image[0]) {
+        formData.append("image", producto.image[0])
+      }
+
       if (selectedProduct) {
-        const { id } = selectedProduct;
-        const res = await axios.put(`${URL}/products/${id}`, producto)
+        const { _id: id } = selectedProduct;
+        const res = await axios.put(`${URL}/products/${id}`, formData)
+
         console.log(res.data)
 
         Swal.fire({
@@ -112,8 +145,16 @@ export default function AdminProduct() {
 
       } else {
 
-        const res = await axios.post(`${URL}/products`, producto)
+        const res = await axios.post(`${URL}/products`, formData)
         console.log(res.data)
+
+        Swal.fire({
+          title: 'Producto creado',
+          text: 'El producto fue creado correctamente',
+          icon: 'success',
+          timer: 1500
+        })
+
         reset()
       }
 
@@ -150,6 +191,7 @@ export default function AdminProduct() {
           <form onSubmit={handleSubmit(onProductSubmit)}>
 
             <div className="adminForm">
+              
               <div className="input-group">
 
                 <label htmlFor="name">Nombre Producto <span className="llenar">*</span></label>
@@ -187,13 +229,21 @@ export default function AdminProduct() {
               <div className="input-group">
 
                 <label htmlFor="">Categoria <span className="llenar">*</span></label>
-                <select  {...register("category", { required: true })}>/
-                  <option value="Whisky">Whisky</option>
+                <select  {...register("category", { required: true })}>
+
+                  {
+                    categories.map(cat => (
+                      <option key={cat._id} value={cat.name}>{cat.viewValue}</option>
+                    ))
+                  }
+
+                  {/* <option value="Whisky">Whisky</option>
                   <option value="Ron">Ron</option>
                   <option value="Pisco">Pisco</option>
                   <option value="Gin">Gin</option>
                   <option value="Vodka">Vodka</option>
-                  <option value="Tequila">Tequila</option>
+                  <option value="Tequila">Tequila</option> */}
+
                 </select>
 
                 {errors.category && <div className="input-error">El campo es requerido</div>}
@@ -212,7 +262,7 @@ export default function AdminProduct() {
               <div className="input-group">
 
                 <label htmlFor="">Agregar Imagen <span className="llenar">*</span></label>
-                <input type="url" {...register("image", { required: true })} />
+                <input accept="image/*" type="file" {...register("image", { required: true })} />
 
                 {errors.category && <div className="input-error">El campo es requerido</div>}
 
@@ -243,6 +293,13 @@ export default function AdminProduct() {
             deleteProduct={deleteProduct}
             handleEditProduct={handleEditProduct}
           />
+          <Pagination total={total} limit={limit} getFunction={getProducts} />
+
+          <select onChange={(evt) => setLimit(evt.target.value)}>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>
         </div>
       </div>
 

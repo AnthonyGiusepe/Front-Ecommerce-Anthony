@@ -27,7 +27,7 @@ export default function Home() {
           </div>
 
           <ProductGallery />
-
+          
         </section>
 
         {/* ======= SECTION CARACTERISTICAS DEL SERVICIO ======= */}

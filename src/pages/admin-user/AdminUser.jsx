@@ -4,11 +4,16 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import UserTable from '../../components/user-table/UserTable'
+import { useUser } from '../../context/UserContext'
 
 
-const URL = import.meta.env.VITE_SERVER_URL
+// const URL = import.meta.env.VITE_SERVER_URL
+
+const URL2 = import.meta.env.VITE_LOCAL_SERVER
 
 export default function AdminUser() {
+
+  const { token, logout } = useUser()
 
   const [users, setUser] = useState([])
 
@@ -26,9 +31,8 @@ export default function AdminUser() {
     if (selectedUser) {
 
       setValue('name', selectedUser.name)
-      setValue('mail', selectedUser.mail)
+      setValue('email', selectedUser.email)
       setValue('password', selectedUser.password)
-      setValue('repeatpassword', selectedUser.repeatpassword)
       setValue('date', selectedUser.date)
       setValue('country', selectedUser.country)
       setValue('image', selectedUser.image)
@@ -48,11 +52,24 @@ export default function AdminUser() {
     try {
       //carga de productos
 
-      const res = await axios.get(`${URL}/users`)
+      const res = await axios.get(`${URL2}/users`,{
+        headers: {
+          Authorization: token
+        }
+      })
+
+      // const res = await axios.get(`${URL}/users`)
       console.log(res.data)
       setUser(res.data)
 
     } catch (error) {
+
+      if(error.res.status === 401){
+        alert("Su sesion a caducado, debe registrarse nuevamente")
+        logout()
+        return
+      }
+      alert("Error al obtener usuarios")
       console.log(error)
     }
   }
@@ -69,7 +86,11 @@ export default function AdminUser() {
     }).then(async (res) => {
       try {
         if (res.isConfirmed) {
-          const res = await axios.delete(`${URL}/users/${id}`)
+          const res = await axios.delete(`${URL2}/users/${id}`, {
+            headers: {
+              Authorization: token
+            }
+          })
           console.log(res)
 
           getUsers();
@@ -90,9 +111,25 @@ export default function AdminUser() {
 
     try {
 
+      const formData = new FormData()
+
+      formData.append("name", usuario.name)
+      formData.append("email", usuario.email)
+      formData.append("password", usuario.password)
+      formData.append("date", usuario.date)
+      formData.append("country", usuario.country)
+
+      if (usuario.image[0]) {
+        formData.append("image", usuario.image[0])
+      }
+
       if (selectedUser) {
-        const { id } = selectedUser;
-        const res = await axios.put(`${URL}/users/${id}`, usuario)
+        const { _id : id } = selectedUser;
+        const res = await axios.put(`${URL2}/users/${id}`, formData, {
+          headers: {
+            Authorization: token
+          }
+        })
         console.log(res.data)
 
         Swal.fire({
@@ -107,7 +144,7 @@ export default function AdminUser() {
 
       } else {
 
-        const res = await axios.post(`${URL}/users`, usuario)
+        const res = await axios.post(`${URL2}/users`, formData)
         console.log(res.data)
         reset()
 
@@ -167,10 +204,10 @@ export default function AdminUser() {
 
               <div className="input-group">
 
-                <label htmlFor="mail">Correo Electronico <span className="llenar">*</span></label>
+                <label htmlFor="email">Correo Electronico <span className="llenar">*</span></label>
                 <input type="text"
                   id="mail"
-                  {...register("mail", { required: true, minLength: 3 })
+                  {...register("email", { required: true, minLength: 3 })
                   } />
 
                 {errors.mail?.type === 'required' && <div className="input-error">El campo es requerido</div>}
@@ -183,24 +220,11 @@ export default function AdminUser() {
                 <label htmlFor="password">Contraseña <span className="llenar">*</span></label>
                 <input type="text"
                   id="password"
-                  {...register("password", { required: true, minLength: 5 })
+                  {...register("password", { required: true, minLength: 4, maxLength:70 })
                   } />
 
                 {errors.password?.type === 'required' && <div className="input-error">El campo es requerido</div>}
                 {errors.password?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 5</div>}
-
-              </div>
-
-              <div className="input-group">
-
-                <label htmlFor="repeatpassword">Repetir Contraseña <span className="llenar">*</span></label>
-                <input type="text"
-                  id="repeatpassword"
-                  {...register("repeatpassword", { required: true, minLength: 5 })
-                  } />
-
-                {errors.repeatpassword?.type === 'required' && <div className="input-error">El campo es requerido</div>}
-                {errors.repeatpassword?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 5</div>}
 
               </div>
 
@@ -430,7 +454,7 @@ export default function AdminUser() {
               <div className="input-group">
 
                 <label htmlFor="image">Seleccione Imagen <span className="llenar">*</span></label>
-                <input type="url" {...register("image", { required: true })} />
+                <input accept="image/*" type="file" {...register("image", { required: true })} />
 
                 {errors.category && <div className="input-error">El campo es requerido</div>}
 
