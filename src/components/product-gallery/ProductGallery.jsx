@@ -9,7 +9,7 @@ const URL2 = import.meta.env.VITE_LOCAL_SERVER
 export default function ProductGallery() {
 
   const [products, setProducts] = useState([]);
-  const [limit, setLimit] = useState(3)
+  const [limit, setLimit] = useState(8)
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -44,20 +44,20 @@ export default function ProductGallery() {
     <>
 
       <section className="product-card-container">
-        
-          {
-            products.map(producto => (<ProductCard key={producto._id} prod={producto} />))
-          }
-          
+
+        {
+          products.map(producto => (<ProductCard key={producto._id} prod={producto} />))
+        }
+
 
       </section>
 
       <Pagination total={total} limit={limit} getFunction={getProducts} />
 
-      <select onChange={(evt)=> setLimit(evt.target.value)}>
+      <select onChange={(evt) => setLimit(evt.target.value)}>
         <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="8">8</option>
       </select>
 
     </>

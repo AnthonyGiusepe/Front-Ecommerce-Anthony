@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import './AdminProduct.css'
 import AdminTable from "../../components/admin-table/AdminTable";
 import Swal from "sweetalert2";
+import Pagination from "../../components/pagination/Pagination";
 
 const URL = import.meta.env.VITE_LOCAL_SERVER
 
@@ -11,6 +12,9 @@ export default function AdminProduct() {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([])
+  //Para la paginacion
+  const [limit, setLimit] = useState(5)
+  const [total, setTotal] = useState(0)
   //estado para manejar la edicion de los productos
   const [selectedProduct, setSelectedProduct] = useState(null)
 
@@ -19,7 +23,7 @@ export default function AdminProduct() {
   useEffect(() => {
     getProducts()
     getCategories()
-  }, [])
+  }, [limit])
 
   useEffect(() => {
 
@@ -50,9 +54,9 @@ export default function AdminProduct() {
   async function getCategories() {
     try {
 
-        const response = await axios.get(`${URL}/categories`)
-        console.log(response)
-        setCategories(response.data.category)
+      const response = await axios.get(`${URL}/categories`)
+      console.log(response)
+      setCategories(response.data.category)
 
     } catch (error) {
       console.log(error)
@@ -60,16 +64,18 @@ export default function AdminProduct() {
     }
   }
 
-  async function getProducts() {
+  async function getProducts(skip = 0) {
 
     try {
       //carga de productos
 
-      const res = await axios.get(`${URL}/products`)
+      const res = await axios.get(`${URL}/products?skip=${skip}&limit=${limit}`)
       console.log(res.data)
 
       const newProduct = res.data.product
       setProducts(newProduct)
+
+      setTotal(res.data.total)
 
     } catch (error) {
       console.log(error)
@@ -106,23 +112,23 @@ export default function AdminProduct() {
 
 
   async function onProductSubmit(producto) {
-    
+
     try {
 
       const formData = new FormData()
-      
+
       formData.append("name", producto.name)
       formData.append("price", producto.price)
       formData.append("description", producto.description)
       formData.append("category", producto.category)
       formData.append("createdAt", producto.createdAt)
 
-      if(producto.image[0]){
+      if (producto.image[0]) {
         formData.append("image", producto.image[0])
       }
 
       if (selectedProduct) {
-        const { _id : id } = selectedProduct;
+        const { _id: id } = selectedProduct;
         const res = await axios.put(`${URL}/products/${id}`, formData)
 
         console.log(res.data)
@@ -226,7 +232,7 @@ export default function AdminProduct() {
 
                   {
                     categories.map(cat => (
-                      <option key={cat._id} value={cat.name}>{ cat.viewValue }</option>
+                      <option key={cat._id} value={cat.name}>{cat.viewValue}</option>
                     ))
                   }
 
@@ -286,6 +292,13 @@ export default function AdminProduct() {
             deleteProduct={deleteProduct}
             handleEditProduct={handleEditProduct}
           />
+          <Pagination total={total} limit={limit} getFunction={getProducts} />
+
+          <select onChange={(evt) => setLimit(evt.target.value)}>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>
         </div>
       </div>
 

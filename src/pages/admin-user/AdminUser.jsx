@@ -31,9 +31,8 @@ export default function AdminUser() {
     if (selectedUser) {
 
       setValue('name', selectedUser.name)
-      setValue('mail', selectedUser.mail)
+      setValue('email', selectedUser.email)
       setValue('password', selectedUser.password)
-      setValue('repeatpassword', selectedUser.repeatpassword)
       setValue('date', selectedUser.date)
       setValue('country', selectedUser.country)
       setValue('image', selectedUser.image)
@@ -60,7 +59,7 @@ export default function AdminUser() {
       })
 
       // const res = await axios.get(`${URL}/users`)
-      // console.log(res.data)
+      console.log(res.data)
       setUser(res.data)
 
     } catch (error) {
@@ -87,7 +86,11 @@ export default function AdminUser() {
     }).then(async (res) => {
       try {
         if (res.isConfirmed) {
-          const res = await axios.delete(`${URL}/users/${id}`)
+          const res = await axios.delete(`${URL2}/users/${id}`, {
+            headers: {
+              Authorization: token
+            }
+          })
           console.log(res)
 
           getUsers();
@@ -109,8 +112,12 @@ export default function AdminUser() {
     try {
 
       if (selectedUser) {
-        const { id } = selectedUser;
-        const res = await axios.put(`${URL}/users/${id}`, usuario)
+        const { _id : id } = selectedUser;
+        const res = await axios.put(`${URL2}/users/${id}`, usuario, {
+          headers: {
+            Authorization: token
+          }
+        })
         console.log(res.data)
 
         Swal.fire({
@@ -125,7 +132,7 @@ export default function AdminUser() {
 
       } else {
 
-        const res = await axios.post(`${URL}/users`, usuario)
+        const res = await axios.post(`${URL2}/users`, usuario)
         console.log(res.data)
         reset()
 
@@ -185,10 +192,10 @@ export default function AdminUser() {
 
               <div className="input-group">
 
-                <label htmlFor="mail">Correo Electronico <span className="llenar">*</span></label>
+                <label htmlFor="email">Correo Electronico <span className="llenar">*</span></label>
                 <input type="text"
                   id="mail"
-                  {...register("mail", { required: true, minLength: 3 })
+                  {...register("email", { required: true, minLength: 3 })
                   } />
 
                 {errors.mail?.type === 'required' && <div className="input-error">El campo es requerido</div>}
@@ -201,24 +208,11 @@ export default function AdminUser() {
                 <label htmlFor="password">Contraseña <span className="llenar">*</span></label>
                 <input type="text"
                   id="password"
-                  {...register("password", { required: true, minLength: 5 })
+                  {...register("password", { required: true, minLength: 4, maxLength:70 })
                   } />
 
                 {errors.password?.type === 'required' && <div className="input-error">El campo es requerido</div>}
                 {errors.password?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 5</div>}
-
-              </div>
-
-              <div className="input-group">
-
-                <label htmlFor="repeatpassword">Repetir Contraseña <span className="llenar">*</span></label>
-                <input type="text"
-                  id="repeatpassword"
-                  {...register("repeatpassword", { required: true, minLength: 5 })
-                  } />
-
-                {errors.repeatpassword?.type === 'required' && <div className="input-error">El campo es requerido</div>}
-                {errors.repeatpassword?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 5</div>}
 
               </div>
 
