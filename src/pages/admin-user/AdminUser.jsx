@@ -64,7 +64,7 @@ export default function AdminUser() {
 
     } catch (error) {
 
-      if(error.res.status === 401){
+      if(error.response?.status === 401){
         alert("Su sesion a caducado, debe registrarse nuevamente")
         logout()
         return

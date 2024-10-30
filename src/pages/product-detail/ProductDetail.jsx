@@ -7,8 +7,8 @@ import { useOrder } from "../../context/OrderContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 
-const URL = import.meta.env.VITE_SERVER_URL
-// const URL2 = import.meta.env.VITE_LOCAL_SERVER
+const URL = import.meta.env.VITE_LOCAL_SERVER
+// const URL2 = import.meta.env.VITE_SERVER_URL
 
 export default function ProductDetail() {
 
@@ -17,7 +17,7 @@ export default function ProductDetail() {
 
   const [product, setproduct] = useState([])
 
-  const { id } = useParams()
+  const { _id } = useParams()
 
   useEffect(() => {
     getProduct()
@@ -26,12 +26,14 @@ export default function ProductDetail() {
 
   async function getProduct() {
     try {
-      const res = await axios.get(`${URL}/products/${id}`)
-      const temp = order.find(p => p.id === id)
+      const res = await axios.get(`${URL}/products/${_id}`)
 
-      res.data.quantity = temp?.quantity ?? 0;
+      const temp = order.find(p => p._id === _id)
+      res.data.Product.quantity = temp?.quantity ?? 0;
+
       console.log(res.data)
-      setproduct(res.data)
+      setproduct(res.data.Product)
+      
     } catch (error) {
       console.log(error)
       alert("Error al obtener el producto")
@@ -56,7 +58,7 @@ export default function ProductDetail() {
           </div>
           <div className="product-container">
             <div className="detail-img">
-              <img src={product.image} alt={product.name} />
+              <img src={`${URL}/images/products/${product.image}`} alt={product.name} />
             </div>
             <div className="detail-description">
               <h1 className="detail-name">

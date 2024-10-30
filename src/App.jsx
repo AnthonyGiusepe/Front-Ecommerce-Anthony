@@ -45,7 +45,7 @@ export default function App() {
               </AdminGuard>
             } />
 
-          <Route path="product-detail/:id" element={<ProductDetail />} />
+          <Route path="product-detail/:_id" element={<ProductDetail />} />
 
           <Route path="*" element={<h1>Not Found</h1>} />
 
