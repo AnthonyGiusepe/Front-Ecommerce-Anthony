@@ -9,7 +9,6 @@ export default function UserTable({ users, deleteUser, handleEditUser }) {
           <th>Imagen</th>
           <th>Usuario</th>
           <th>Correo</th>
-          <th>Contraseña</th>
           <th>Nacimiento</th>
           <th>País</th>
           <th>Acciones</th>

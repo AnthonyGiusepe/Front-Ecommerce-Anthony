@@ -195,7 +195,7 @@ export default function AdminUser() {
                 <input type="text"
                   id="name"
                   {...register("name", { required: true, minLength: 3 })
-                  } style={{ textTransform: 'uppercase' }} />
+                  } />
 
                 {errors.name?.type === 'required' && <div className="input-error">El campo es requerido</div>}
                 {errors.name?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 3</div>}

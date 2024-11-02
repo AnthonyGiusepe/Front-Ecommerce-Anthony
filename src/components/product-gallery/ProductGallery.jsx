@@ -17,7 +17,7 @@ export default function ProductGallery() {
 
   useEffect(() => {
     getProducts()
-  }, [limit])
+  }, [limit, token])
 
   async function getProducts(skip = 0) {
     try {

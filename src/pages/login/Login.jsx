@@ -62,7 +62,8 @@ export default function Login() {
             </form>
             <div className="form-cuenta">
               <h4>¿Nuevo Cliente?</h4>
-              <NavLink to='/register'>Crear una cuenta</NavLink>
+              <NavLink to='/register'>Crear una cuenta</NavLink>/
+              <NavLink to='/'>Home</NavLink>
             </div>
           </div>
         </section>
