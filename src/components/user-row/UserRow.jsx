@@ -10,7 +10,6 @@ export default function UserRow({ user, deleteUser, handleEditUser }) {
       <td className="image"> <img src={`${URL}/images/users/${user.image}`} alt={user.name} /> </td>
       <td className="name"> {user.name} </td>
       <td className="mail"> {user.email} </td>
-      <td className="password"> {user.password} </td>
       <td className="date"> {user.date} </td>
       <td className="country"> {user.country} </td>
       <td className="actions">

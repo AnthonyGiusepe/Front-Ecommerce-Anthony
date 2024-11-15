@@ -5,10 +5,13 @@ import './AdminProduct.css'
 import AdminTable from "../../components/admin-table/AdminTable";
 import Swal from "sweetalert2";
 import Pagination from "../../components/pagination/Pagination";
+import { useUser } from "../../context/UserContext";
 
 const URL = import.meta.env.VITE_LOCAL_SERVER
 
 export default function AdminProduct() {
+
+  const { token, logout } = useUser()
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([])
@@ -69,7 +72,11 @@ export default function AdminProduct() {
     try {
       //carga de productos
 
-      const res = await axios.get(`${URL}/products?skip=${skip}&limit=${limit}`)
+      const res = await axios.get(`${URL}/products?skip=${skip}&limit=${limit}`, {
+        headers: {
+          Authorization: token
+        }
+      })
       console.log(res.data)
 
       const newProduct = res.data.product
@@ -78,6 +85,12 @@ export default function AdminProduct() {
       setTotal(res.data.total)
 
     } catch (error) {
+      if(error.response?.status === 401){
+        alert("Su sesion a caducado, debe registrarse nuevamente")
+        logout()
+        return
+      }
+      alert("Error al obtener productos")
       console.log(error)
     }
   }
@@ -94,7 +107,11 @@ export default function AdminProduct() {
     }).then(async (res) => {
       try {
         if (res.isConfirmed) {
-          const res = await axios.delete(`${URL}/products/${id}`)
+          const res = await axios.delete(`${URL}/products/${id}`, {
+            headers: {
+              Authorization: token
+            }
+          })
           console.log(res)
 
           getProducts();
@@ -129,7 +146,11 @@ export default function AdminProduct() {
 
       if (selectedProduct) {
         const { _id: id } = selectedProduct;
-        const res = await axios.put(`${URL}/products/${id}`, formData)
+        const res = await axios.put(`${URL}/products/${id}`, formData, {
+          headers: {
+            Authorization: token
+          }
+        })
 
         console.log(res.data)
 
@@ -145,7 +166,11 @@ export default function AdminProduct() {
 
       } else {
 
-        const res = await axios.post(`${URL}/products`, formData)
+        const res = await axios.post(`${URL}/products`, formData, {
+          headers: {
+            Authorization: token
+          }
+        })
         console.log(res.data)
 
         Swal.fire({

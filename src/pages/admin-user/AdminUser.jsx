@@ -64,7 +64,7 @@ export default function AdminUser() {
 
     } catch (error) {
 
-      if(error.res.status === 401){
+      if(error.response?.status === 401){
         alert("Su sesion a caducado, debe registrarse nuevamente")
         logout()
         return
@@ -195,7 +195,7 @@ export default function AdminUser() {
                 <input type="text"
                   id="name"
                   {...register("name", { required: true, minLength: 3 })
-                  } style={{ textTransform: 'uppercase' }} />
+                  } />
 
                 {errors.name?.type === 'required' && <div className="input-error">El campo es requerido</div>}
                 {errors.name?.type === 'minLength' && <div className="input-error">Minimo Caracteres es 3</div>}

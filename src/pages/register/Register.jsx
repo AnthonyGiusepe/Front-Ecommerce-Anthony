@@ -15,7 +15,19 @@ export default function Register() {
 
     try {
 
-      const res = await axios.post(`${URL}/users`, usuario)
+      const formData = new FormData()
+
+      formData.append("name", usuario.name)
+      formData.append("email", usuario.email)
+      formData.append("password", usuario.password)
+      formData.append("date", usuario.date)
+      formData.append("country", usuario.country)
+
+      if (usuario.image[0]) {
+        formData.append("image", usuario.image[0])
+      }
+
+      const res = await axios.post(`${URL}/users`, formData)
         console.log(res.data)
         reset()
 
@@ -70,7 +82,7 @@ export default function Register() {
 
                 <input
                   type="text"
-                  id="mail"
+                  id="email"
                   {...register("email", { required: true, minLength: 3 })
                   }
                   placeholder="Correo"
@@ -88,7 +100,7 @@ export default function Register() {
                 <input type="text"
                   id="password"
                   placeholder="Contraseña"
-                  {...register("password", { required: true, minLength: 5 })
+                  {...register("password", { required: true, minLength: 4 })
                   } />
 
                 {errors.password?.type === 'required' && <div className="input-error">El campo es requerido</div>}
@@ -323,7 +335,7 @@ export default function Register() {
               <div className="input-container">
                 
                 <label htmlFor="image">Seleccione Imagen <span className="llenar">*</span></label>
-                <input type="url" {...register("image", { required: true })} />
+                <input accept="image/*" type="file" {...register("image", { required: true })} />
 
                 {errors.category && <div className="input-error">El campo es requerido</div>}
 

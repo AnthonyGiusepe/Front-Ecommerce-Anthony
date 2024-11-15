@@ -2,13 +2,18 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { createContext } from 'react';
 import Swal from 'sweetalert2';
+import { useUser } from './UserContext';
+import axios from 'axios';
 
+const URL = import.meta.env.VITE_LOCAL_SERVER
 
 const OrderContext = createContext()
 
 export const useOrder = () => useContext(OrderContext);
 
 export function OrderProvider({ children }) {
+
+    const { user } = useUser()
 
     const [count, setCount] = useState(0)
     const [total, setTotal] = useState(0)
@@ -38,7 +43,7 @@ export function OrderProvider({ children }) {
 
         // setOrder(updateOrder)
 
-        const productExists = order.find(prod => prod.id === product.id)
+        const productExists = order.find(prod => prod._id === product._id)
 
         if (productExists) {
 
@@ -86,7 +91,7 @@ export function OrderProvider({ children }) {
         setTotal(total)
     }
 
-    function removeProduct(id) {
+    function removeProduct(_id) {
 
         // const indice = order.findIndex(prod => prod.id === id)
 
@@ -96,12 +101,12 @@ export function OrderProvider({ children }) {
 
         // setOrder(orderCopy)
 
-        const orderFiltered = order.filter(prod => prod.id !== id)
+        const orderFiltered = order.filter(prod => prod._id !== _id)
 
         setOrder(orderFiltered)
 
         Swal.fire({
-            position:'top',
+            position: 'top',
             width: '350px',
             height: '150px',
             title: 'Producto eliminado',
@@ -126,7 +131,7 @@ export function OrderProvider({ children }) {
 
         // setOrder(newOrder)
 
-        const producto = order.find(prod => prod.id === product.id);
+        const producto = order.find(prod => prod._id === product._id);
         if (!producto) {
             product.quantity = value;
             return setOrder([...order, product])
@@ -135,6 +140,50 @@ export function OrderProvider({ children }) {
         producto.quantity = value
 
         setOrder([...order])
+
+    }
+
+    async function createOrder() {
+
+        try {
+
+            if(!user?._id){
+                alert("Su sesion a caducado, debe registrarse nuevamente para crear una orden")
+                return
+            }
+
+            const products = order.map(prod => {
+
+                return {
+                    product: prod._id,
+                    quantity: prod.quantity,
+                    price: prod.price
+                }
+
+            })
+
+            // const user = user._id
+
+            await axios.post(`${URL}/orders`, {
+                products,
+                user: user._id,
+                total
+            })
+
+            const responseOrder = await axios.get(`${URL}/orders`)
+            console.log("Listado de ordenes:", responseOrder.data.orders)
+
+            Swal.fire({
+                title: 'Orden Creada',
+                text: 'La orden fue creada correctamente',
+                icon: 'success',
+                timer: 1500
+            })
+
+        } catch (error) {
+            console.log(error)
+            alert('Error al crear la orden')
+        }
 
     }
 
@@ -148,7 +197,8 @@ export function OrderProvider({ children }) {
                 count,
                 total,
                 removeProduct,
-                changeItemQuantity
+                changeItemQuantity,
+                createOrder
             }}
         >
             {children}

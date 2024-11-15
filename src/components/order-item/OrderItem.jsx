@@ -3,6 +3,8 @@ import './OrderItem.css'
 import { useOrder } from '../../context/OrderContext'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
+const URL = import.meta.env.VITE_LOCAL_SERVER
+
 export default function OrderItem({ item }) {
 
   const {removeProduct, changeItemQuantity} = useOrder()
@@ -10,7 +12,7 @@ export default function OrderItem({ item }) {
   return (
     <tr className="order-item">
 
-      <td className='item-image'><img src={item.image} alt={item.name} /></td>
+      <td className='item-image'><img src={`${URL}/images/products/${item.image}`} alt={item.name} /></td>
       <td className="item-info">{item.name}</td>
       <td className="item-price">S/. {item.price} </td>
       <td className="item-subtotal">S/. {item.price * item.quantity} </td>
@@ -23,7 +25,7 @@ export default function OrderItem({ item }) {
       </td>
       <td>
       <div className="item-actions">
-        <button className='btn-trash btn-danger' onClick={()=> removeProduct(item.id)}>
+        <button className='btn-trash btn-danger' onClick={()=> removeProduct(item._id)}>
         <FontAwesomeIcon icon={faTrashCan} />
         </button>
 
