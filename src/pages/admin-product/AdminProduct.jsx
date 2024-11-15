@@ -58,7 +58,7 @@ export default function AdminProduct() {
     try {
 
       const response = await axios.get(`${URL}/categories`)
-      console.log(response)
+      // console.log(response)
       setCategories(response.data.category)
 
     } catch (error) {
@@ -77,7 +77,7 @@ export default function AdminProduct() {
           Authorization: token
         }
       })
-      console.log(res.data)
+      // console.log(res.data)
 
       const newProduct = res.data.product
       setProducts(newProduct)

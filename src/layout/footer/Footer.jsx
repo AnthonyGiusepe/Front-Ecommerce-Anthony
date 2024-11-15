@@ -37,7 +37,7 @@ export default function Footer() {
               <h3>Co-Licorería Ecommerce</h3>
               <div className="footer-logo-img">
                 <img
-                  src="/src/image/Icons/lg-margarita.webp"
+                  src="https://i.ibb.co/2dCMdrv/lg-margarita.webp"
                   alt="Logo principal"
                 />
               </div>

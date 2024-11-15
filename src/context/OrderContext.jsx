@@ -29,7 +29,7 @@ export function OrderProvider({ children }) {
 
     function addProduct(product) {
 
-        console.log('Add product', product.name)
+        // console.log('Add product', product.name)
 
         // const updateOrder = order.map(prod => {
 

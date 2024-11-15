@@ -35,7 +35,7 @@ export default function Home() {
           <article className="feature">
             <img
               className="feature-image"
-              src="/src/image/Icons/icon-tienda.svg"
+              src="https://i.ibb.co/H4QYNRG/icon-tienda.jpg"
               alt="Recojo tienda"
             />
             <div className="feature-description">
@@ -48,7 +48,7 @@ export default function Home() {
           <article className="feature">
             <img
               className="feature-image"
-              src="/src/image/Icons/icon-delivery.svg"
+              src="https://i.ibb.co/KVFh9gR/icon-delivery.jpg"
               alt="delivery"
             />
             <div className="feature-description">
@@ -61,7 +61,7 @@ export default function Home() {
           <article className="feature">
             <img
               className="feature-image"
-              src="/src/image/Icons/pos-svgrepo-com.svg"
+              src="https://i.ibb.co/pLshnPx/pos-svgrepo-com.jpg"
               alt="metodos de pago"
             />
             <div className="feature-description">
