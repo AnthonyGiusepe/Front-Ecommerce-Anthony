@@ -35,7 +35,7 @@ export default function ProductGallery() {
           Authorization: token
         }
       })
-      console.log(resProd.data)
+      // console.log(resProd.data)
       setProducts(resProd.data.product)
       setTotal(resProd.data.total)
 

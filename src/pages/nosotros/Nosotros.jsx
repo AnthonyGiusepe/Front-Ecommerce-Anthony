@@ -83,7 +83,7 @@ export default function Nosotros() {
             </div>
           </div>
           <div className="dev-img">
-            <img src="/src/image/Img-perfil.jpg" alt="Perfil" />
+            <img src="https://i.ibb.co/TmNHL9p/Img-perfil.jpg" alt="Perfil" />
           </div>
         </div>
       </section>

@@ -23,7 +23,7 @@ export default function Header() {
         <NavLink className="main-logo" to='/'>
           <img
             className="main-logo-img"
-            src="/src/image/Icons/lg-margarita.webp"
+            src="https://i.ibb.co/2dCMdrv/lg-margarita.webp"
             alt="Logo principal"
           />
         </NavLink>

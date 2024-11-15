@@ -59,7 +59,7 @@ export default function AdminUser() {
       })
 
       // const res = await axios.get(`${URL}/users`)
-      console.log(res.data)
+      // console.log(res.data)
       setUser(res.data)
 
     } catch (error) {
