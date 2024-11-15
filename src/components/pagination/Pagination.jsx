@@ -8,7 +8,7 @@ export default function Pagination( {total, limit, getFunction} ) {
     let btnArray = []
 
     for(let i = 0; i < btns; i++){
-        btnArray.push(<button onClick={()=> getFunction(i)} className='pagination-button'>{ i + 1 }</button>)
+        btnArray.push(<button key={i} onClick={()=> getFunction(i)} className='pagination-button'>{ i + 1 }</button>)
     }
 
     return(

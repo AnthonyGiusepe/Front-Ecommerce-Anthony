@@ -170,6 +170,9 @@ export function OrderProvider({ children }) {
                 total
             })
 
+            const responseOrder = await axios.get(`${URL}/orders`)
+            console.log("Listado de ordenes:", responseOrder.data.orders)
+
             Swal.fire({
                 title: 'Orden Creada',
                 text: 'La orden fue creada correctamente',
@@ -181,8 +184,6 @@ export function OrderProvider({ children }) {
             console.log(error)
             alert('Error al crear la orden')
         }
-
-
 
     }
 
